@@ -10,7 +10,7 @@ jobs:
 
       ##### Building library
       - restore_cache:
-          keys: 
+          keys:
             - dot-stack-{{ checksum "stack.yaml" }}-{{ checksum "hw-aeson.cabal" }}
             - dot-stack-{{ checksum "stack.yaml" }}-build
             - dot-stack-{{ checksum "stack.yaml" }}-setup
@@ -29,7 +29,7 @@ jobs:
 
       - run:
           name: Compiling
-          command: stack build --test --no-run-tests 
+          command: stack build --test --no-run-tests
 
       - save_cache:
           key: dot-stack-{{ checksum "stack.yaml" }}-{{ checksum "hw-aeson.cabal" }}
@@ -49,6 +49,3 @@ jobs:
           name: Running tests
           command: |
             stack test
-            ( cd solution
-              stack test
-            )

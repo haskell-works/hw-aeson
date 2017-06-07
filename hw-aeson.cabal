@@ -27,6 +27,7 @@ test-suite hw-aeson-test
   main-is:              Spec.hs
   other-modules:        HaskellWorks.Data.AesonSpec
   build-depends:        base
+                      , aeson
                       , hspec
                       , hedgehog
                       , hw-aeson
