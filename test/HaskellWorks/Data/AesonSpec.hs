@@ -13,17 +13,6 @@ import Test.Hspec
 
 spec :: Spec
 spec = describe "HaskellWorks.Data.Aeson" $ do
-  it "123123" $ do
-    let actual = objectWith
-          (  "one"    .=! (1 :: Int)
-          <> "two"    .=? Just (2 :: Int)
-          <> "three"  .=? (Nothing :: Maybe Int)
-          )
-    let expected = object
-          [ "one"    .= (1 :: Int)
-          , "two"    .= (2 :: Int)
-          ]
-    actual `shouldBe` expected
   it "objectWithoutNulls should stould strip nulls" $ do
     let actual = objectWithoutNulls
           [ "one"    .= (1 :: Int)
