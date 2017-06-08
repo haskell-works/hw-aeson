@@ -3,6 +3,7 @@ module HaskellWorks.Data.Aeson
     , (.=!)
     , OptionalPairs(..)
     , objectWith
+    , objectWithoutNulls
     ) where
 
 import Data.Aeson
@@ -27,3 +28,9 @@ instance Monoid OptionalPairs where
 
 objectWith :: OptionalPairs -> Value
 objectWith (OptionalPairs f) = object (f [])
+
+objectWithoutNulls :: [Pair] -> Value
+objectWithoutNulls = object . Prelude.filter (not . isNull . snd)
+  where
+    isNull Null = True
+    isNull _    = False
