@@ -1,0 +1,32 @@
+name: hw-aeson
+version: '0.1.0.0'
+category: Web
+author: Author name here
+maintainer: example@example.com
+copyright: 2017 Author name here
+license: BSD3
+github: githubuser/hw-aeson
+extra-source-files:
+- README.md
+dependencies:
+- aeson
+library:
+  source-dirs: src
+  exposed-modules:
+  - HaskellWorks.Data.Aeson
+  dependencies:
+  - base >=4.7 && <5
+  - text
+tests:
+  hw-aeson-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - base
+    - hspec
+    - hedgehog
+    - hw-aeson
