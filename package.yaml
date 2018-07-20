@@ -1,15 +1,18 @@
 name: hw-aeson
 version: '0.1.0.0'
-category: Web
+category: Data, JSON
 author: Author name here
 maintainer: example@example.com
 copyright: 2017 Author name here
 license: BSD3
 github: githubuser/hw-aeson
+
 extra-source-files:
 - README.md
+
 dependencies:
 - aeson
+
 library:
   source-dirs: src
   exposed-modules:
@@ -17,6 +20,7 @@ library:
   dependencies:
   - base >=4.7 && <5
   - text
+
 tests:
   hw-aeson-test:
     main: Spec.hs
