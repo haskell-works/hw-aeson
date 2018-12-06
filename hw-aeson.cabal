@@ -1,5 +1,5 @@
 name:           hw-aeson
-version:        0.1.0.0
+version:        0.1.0.1
 synopsis:       Convenience functions for Aeson
 description:    Convenience functions for Aeson
 category:       Data, JSON
