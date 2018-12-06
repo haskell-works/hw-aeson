@@ -5,6 +5,7 @@ module HaskellWorks.Data.Aeson
 
 import Data.Aeson
 import Data.Aeson.Types
+import Data.Semigroup   ((<>))
 import Data.Text
 import Text.Read
 
