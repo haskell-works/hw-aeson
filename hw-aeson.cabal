@@ -1,7 +1,7 @@
 name:           hw-aeson
 version:        0.1.0.1
 synopsis:       Convenience functions for Aeson
-description:    Convenience functions for Aeson
+description:    Convenience functions for Aeson.
 category:       Data, JSON
 homepage:       https://github.com/haskell-works/hw-aeson#readme
 bug-reports:    https://github.com/haskell-works/hw-aeson/issues
