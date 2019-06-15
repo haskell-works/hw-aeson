@@ -18,10 +18,10 @@ extra-source-files:
 
 common base       { build-depends: base       >= 4.7    && < 5    }
 
-common aeson      { build-depends: aeson                          }
-common hedgehog   { build-depends: hedgehog                       }
-common hspec      { build-depends: hspec                          }
-common text       { build-depends: text                           }
+common aeson      { build-depends: aeson      >= 1.4    && < 1.5  }
+common hedgehog   { build-depends: hedgehog   >= 0.6    && < 1.1  }
+common hspec      { build-depends: hspec      >= 2.7.1  && < 2.8  }
+common text       { build-depends: text       >= 1.2    && < 1.3  }
 
 common config
 
