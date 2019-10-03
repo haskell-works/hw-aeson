@@ -1,26 +1,26 @@
 cabal-version:      2.2
 
-name:               hw-aeson
-version:            0.1.0.1
-synopsis:           Convenience functions for Aeson
-description:        Convenience functions for Aeson.
-category:           Data, JSON
-homepage:           https://github.com/haskell-works/hw-aeson#readme
-bug-reports:        https://github.com/haskell-works/hw-aeson/issues
-author:             John Ky
-maintainer:         newhoggy@gmail.com
-copyright:          2018-2019 John Ky
-license:            BSD-3-Clause
-license-file:       LICENSE
-build-type:         Simple
-extra-source-files:
-  README.md
+name:                 hw-aeson
+version:              0.1.0.1
+synopsis:             Convenience functions for Aeson
+description:          Convenience functions for Aeson.
+category:             Data, JSON
+homepage:             https://github.com/haskell-works/hw-aeson#readme
+bug-reports:          https://github.com/haskell-works/hw-aeson/issues
+author:               John Ky
+maintainer:           newhoggy@gmail.com
+copyright:            2018-2019 John Ky
+license:              BSD-3-Clause
+license-file:         LICENSE
+tested-with:          GHC == 8.8.1, GHC == 8.6.5, GHC == 8.4.4
+build-type:           Simple
+extra-source-files:   README.md
 
 source-repository head
   type: git
   location: https://github.com/haskell-works/hw-aeson
 
-common base       { build-depends: base       >= 4.7    && < 5    }
+common base       { build-depends: base       >= 4.11   && < 5    }
 
 common aeson      { build-depends: aeson      >= 1.4    && < 1.5  }
 common hedgehog   { build-depends: hedgehog   >= 0.6    && < 1.1  }
