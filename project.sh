@@ -13,7 +13,7 @@ case "$cmd" in
     ;;
 
   test)
-    cabal new-test \
+    cabal new-test --enable-tests \
       $CABAL_FLAGS "$@"
     ;;
 esac
