@@ -5,7 +5,6 @@ module HaskellWorks.Data.AesonSpec
   ) where
 
 import Data.Aeson
-import Data.Semigroup
 import HaskellWorks.Data.Aeson
 import Test.Hspec
 
