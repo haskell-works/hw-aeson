@@ -6,6 +6,15 @@ cmd="$1"
 
 shift
 
+cabal-install() {
+  cabal v2-install \
+    -j8 \
+    --installdir="$HOME/.local/bin" \
+    --overwrite-policy=always \
+    --disable-documentation \
+    $CABAL_FLAGS "$@"
+}
+
 cabal-build() {
   cabal v2-build \
     --enable-tests \
@@ -17,6 +26,7 @@ cabal-test() {
   cabal v2-test \
     --enable-tests \
     --test-show-details=direct \
+    --test-options='+RTS -g1' \
     $CABAL_FLAGS "$@"
 }
 
@@ -39,6 +49,10 @@ cabal-clean() {
 }
 
 case "$cmd" in
+  install)
+    cabal-install
+    ;;
+
   build)
     cabal-build
     ;;
