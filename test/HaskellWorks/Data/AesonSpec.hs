@@ -8,7 +8,7 @@ import Data.Aeson
 import HaskellWorks.Data.Aeson
 import Test.Hspec
 
-{-# ANN module ("HLint: ignore Redundant do"  :: String) #-}
+{- HLINT ignore "Redundant do"        -}
 
 spec :: Spec
 spec = describe "HaskellWorks.Data.Aeson" $ do
