@@ -1,3 +1,3 @@
 # hw-aeson
 
-[![CircleCI](https://circleci.com/gh/haskell-works/hw-aeson.svg?style=svg)](https://circleci.com/gh/haskell-works/hw-aeson)
+[![Binaries](https://github.com/haskell-works/hw-aeson/actions/workflows/haskell.yml/badge.svg)](https://github.com/haskell-works/hw-aeson/actions/workflows/haskell.yml)
