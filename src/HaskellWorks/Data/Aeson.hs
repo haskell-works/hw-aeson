@@ -5,7 +5,6 @@ module HaskellWorks.Data.Aeson
     , objectWithoutNulls
     , readJson
     , objectEndo
-    -- , pairsEndo
     , (.?=)
     , (.!=)
     ) where
