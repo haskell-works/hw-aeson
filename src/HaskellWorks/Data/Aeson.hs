@@ -2,6 +2,8 @@
 
 module HaskellWorks.Data.Aeson
     ( JsonEndo(..)
+    , WithJsonKeyValues(..)
+    , ToJsonKeyValues(..)
     , objectWithoutNulls
     , readJson
     , objectEndo
@@ -60,3 +62,37 @@ readJson t s = case readMaybe s of
 -- @
 objectEndo :: [JsonEndo Pair] -> Value
 objectEndo es = object $ unJsonEndo (mconcat es) []
+
+-- | Generate key values from a value of a type.  This can be used
+-- in conjunction with 'WithJsonKeyValues' to define a 'ToJSON' instance
+-- without having to implement both 'toJSON' and 'toEncoding', thereby
+-- reducing boilerplate.
+--
+-- For example:
+--
+-- @
+-- instance ToJsonEncoding MyType where
+--   toJsonEncoding sv =
+--     [ "my_field" .!= sv ^. #myField
+--     ]
+-- @
+class ToJsonKeyValues a where
+  toJsonKeyValues :: (KeyValue kv, Monoid kv) => a -> [kv]
+
+-- | For use with language extension DerivingVia.  This derivation provides
+-- a ToJSON instance that delegates to the ToJsonKeyValues instance.
+--
+-- For example:
+--
+-- @
+-- newtype MyType = MyType
+--   { myField :: Text
+--   } deriving J.ToJSON via WithJsonKeyValues MyType
+-- @
+newtype WithJsonKeyValues a = WithJsonKeyValues
+  { unWithJsonKeyValues :: a
+  }
+
+instance ToJsonKeyValues a => ToJSON (WithJsonKeyValues a) where
+  toJSON = objectEndo . toJsonKeyValues . unWithJsonKeyValues
+  toEncoding = pairs . mconcat . toJsonKeyValues . unWithJsonKeyValues
