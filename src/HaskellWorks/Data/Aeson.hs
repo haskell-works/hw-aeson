@@ -11,12 +11,12 @@ module HaskellWorks.Data.Aeson
     , (.!=)
     ) where
 
-import Text.Read (readMaybe)
 import Data.Aeson (pairs, object, KeyValue((.=)), ToJSON(toJSON, toEncoding), Series, Value(Null))
 import Data.Aeson.Encoding (Encoding)
-import Data.Aeson.Key (Key)
 import Data.Aeson.Types (Pair, Parser)
 import Data.Monoid (Endo(..))
+import HaskellWorks.Data.Aeson.Compat (Key)
+import Text.Read (readMaybe)
 
 infixr 7 .?=
 infixr 7 .!=
