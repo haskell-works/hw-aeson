@@ -4,6 +4,8 @@ module HaskellWorks.Data.Aeson.Compat.Map
   ( module JM
   , KeyMap(..)
   , foldlWithKey'
+  , fromHashMapText
+  , toHashMapText
   ) where
 
 import qualified Data.Map as M
@@ -13,7 +15,8 @@ import Data.HashMap.Strict (HashMap)
 import Data.Text (Text)
 
 #if MIN_VERSION_aeson(2,0,0)
-import Data.Aeson.KeyMap as JM
+import qualified Data.Aeson.KeyMap as JM
+import Data.Aeson.KeyMap (KeyMap)
 #else
 import qualified Data.HashMap.Strict as JM
 import Data.HashMap.Strict hiding (foldlWithKey')
