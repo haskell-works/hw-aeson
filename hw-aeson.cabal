@@ -23,7 +23,8 @@ source-repository head
 common base                       { build-depends: base                       >= 4.11       && < 5      }
 
 common aeson                      { build-depends: aeson                      >= 1.4        && < 2.1    }
-common containers                 { build-depends: containers                 >= 0.6        && < 0.7   }
+common bytestring                 { build-depends: bytestring                 >= 0.10       && < 0.12   }
+common containers                 { build-depends: containers                 >= 0.6        && < 0.7    }
 common doctest                    { build-depends: doctest                    >= 0.16.2     && < 0.21   }
 common doctest-discover           { build-depends: doctest-discover           >= 0.2        && < 0.3    }
 common hedgehog                   { build-depends: hedgehog                   >= 0.6        && < 1.3    }
@@ -40,6 +41,7 @@ common hw-aeson
 library
   import:               base, config
                       , aeson
+                      , bytestring
                       , containers
                       , text
                       , text-short
