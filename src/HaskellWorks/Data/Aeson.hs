@@ -13,10 +13,14 @@ module HaskellWorks.Data.Aeson
 
 import Data.Aeson (pairs, object, KeyValue((.=)), ToJSON(toJSON, toEncoding), Series, Value(Null))
 import Data.Aeson.Encoding (Encoding)
-import Data.Aeson.Types (Pair, Parser)
+import Data.Aeson.Types (Pair, Parser, parseEither)
 import Data.Monoid (Endo(..))
 import HaskellWorks.Data.Aeson.Compat (Key)
 import Text.Read (readMaybe)
+
+import qualified Data.Aeson           as J
+import qualified Data.Aeson.Types     as J
+import qualified Data.ByteString.Lazy as LBS
 
 infixr 7 .?=
 infixr 7 .!=
@@ -96,3 +100,6 @@ newtype WithJsonKeyValues a = WithJsonKeyValues
 instance ToJsonKeyValues a => ToJSON (WithJsonKeyValues a) where
   toJSON = objectEndo . toJsonKeyValues . unWithJsonKeyValues
   toEncoding = pairs . mconcat . toJsonKeyValues . unWithJsonKeyValues
+
+eitherDecodeWith :: (Value -> Parser a) -> LBS.ByteString -> Either String a
+eitherDecodeWith f lbs = J.eitherDecode lbs >>= J.parseEither f
