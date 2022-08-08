@@ -53,16 +53,18 @@ keyToString = T.unpack
 #endif
 
 
-shortTextToKey :: ShortText -> Key
-#if MIN_VERSION_aeson(2,0,0)
+#if MIN_VERSION_aeson(2,0,2)
+shortTextToKey :: ShortText -> J.Key
 shortTextToKey = J.fromShortText
 #else
+shortTextToKey :: ShortText -> Text
 shortTextToKey = ST.toText
 #endif
 
-keyToShortText :: Key -> ShortText
-#if MIN_VERSION_aeson(2,0,0)
+#if MIN_VERSION_aeson(2,0,2)
+keyToShortText :: J.Key -> ShortText
 keyToShortText = J.toShortText
 #else
+keyToShortText :: Text -> ShortText
 keyToShortText = ST.fromText
 #endif
