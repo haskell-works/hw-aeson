@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TypeApplications #-}
 
 module HaskellWorks.Data.AesonSpec
   ( spec
@@ -7,6 +8,8 @@ module HaskellWorks.Data.AesonSpec
 import Data.Aeson
 import HaskellWorks.Data.Aeson
 import Test.Hspec
+
+import qualified HaskellWorks.Data.Aeson.Compat.Map as JM
 
 {- HLINT ignore "Redundant do"        -}
 
@@ -23,3 +26,14 @@ spec = describe "HaskellWorks.Data.Aeson" $ do
           , "two"    .= (2 :: Int)
           ]
     actual `shouldBe` expected
+  it "Re-exports complete" $ do
+    let _ = JM.toList
+    let _ = JM.toMap
+    let _ = JM.foldlWithKey
+    let _ = JM.fromHashMapText
+    let _ = JM.lookup @Int
+    let _ = JM.toHashMapText
+    let _ = JM.toList
+    let _ = JM.toMap
+
+    True
