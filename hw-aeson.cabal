@@ -27,6 +27,7 @@ common bytestring                 { build-depends: bytestring                 >=
 common containers                 { build-depends: containers                 >= 0.6        && < 0.7    }
 common doctest                    { build-depends: doctest                    >= 0.16.2     && < 0.21   }
 common doctest-discover           { build-depends: doctest-discover           >= 0.2        && < 0.3    }
+common hashable                   { build-depends: hashable                   >= 1.3        && < 1.5    }
 common hedgehog                   { build-depends: hedgehog                   >= 0.6        && < 1.3    }
 common hspec                      { build-depends: hspec                      >= 2.4        && < 3      }
 common text                       { build-depends: text                       >= 1.2        && < 1.3    }
@@ -43,6 +44,7 @@ library
                       , aeson
                       , bytestring
                       , containers
+                      , hashable
                       , text
                       , text-short
                       , unordered-containers
@@ -53,6 +55,8 @@ library
   exposed-modules:      HaskellWorks.Data.Aeson
                         HaskellWorks.Data.Aeson.Compat
                         HaskellWorks.Data.Aeson.Compat.Map
+                        HaskellWorks.Data.Aeson.Compat.Map.V1
+                        HaskellWorks.Data.Aeson.Compat.Map.V2
 
 test-suite hw-aeson-test
   import:               base, config
