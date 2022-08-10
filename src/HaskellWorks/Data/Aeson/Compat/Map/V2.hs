@@ -27,7 +27,6 @@ module HaskellWorks.Data.Aeson.Compat.Map.V2
   , fromListWith
   , toList
   , toAscList
-  , elems
   , fromHashMap
   , toHashMap
   , fromHashMapText
@@ -50,6 +49,9 @@ module HaskellWorks.Data.Aeson.Compat.Map.V2
   , filterWithKey
   , mapMaybe
   , mapMaybeWithKey
+#endif
+#if MIN_VERSION_aeson(2,0,3)
+  , elems
 #endif
   ) where
 
@@ -134,9 +136,6 @@ toList = KM.toList
 toAscList :: KeyMap v -> [(Key, v)]
 toAscList = M.toList . toMap
 
-elems :: KeyMap v -> [v]
-elems = KM.elems
-
 fromHashMap :: HashMap Key v -> KeyMap v
 fromHashMap = KM.fromHashMap
 
@@ -202,5 +201,12 @@ mapMaybe = KM.mapMaybe
 
 mapMaybeWithKey :: (Key -> v -> Maybe u) -> KeyMap v -> KeyMap u
 mapMaybeWithKey = KM.mapMaybeWithKey
+
+#endif
+
+#if MIN_VERSION_aeson(2,0,3)
+
+elems :: KeyMap v -> [v]
+elems = KM.elems
 
 #endif
