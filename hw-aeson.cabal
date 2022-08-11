@@ -1,7 +1,7 @@
 cabal-version: 2.2
 
 name:                   hw-aeson
-version:                0.1.7.0
+version:                0.1.8.0
 synopsis:               Convenience functions for Aeson
 description:            Convenience functions for Aeson.
 category:               Data, JSON
