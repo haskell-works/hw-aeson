@@ -135,7 +135,11 @@ toAscList :: KeyMap v -> [(Key, v)]
 toAscList = M.toList . toMap
 
 elems :: KeyMap v -> [v]
+#if MIN_VERSION_aeson(2,0,3)
 elems = KM.elems
+#else
+elems = M.elems . KM.toMap
+#endif
 
 fromHashMap :: HashMap Key v -> KeyMap v
 fromHashMap = KM.fromHashMap
@@ -165,7 +169,11 @@ map :: (a -> b) -> KeyMap a -> KeyMap b
 map = KM.map
 
 mapWithKey :: (Key -> a -> b) -> KeyMap a -> KeyMap b
+#if MIN_VERSION_aeson(2,1,0)
+mapWithKey = KM.mapWithKey
+#else
 mapWithKey f = KM.fromMap . M.mapWithKey f . KM.toMap
+#endif
 
 traverseWithKey :: Applicative f => (Key -> v1 -> f v2) -> KeyMap v1 -> f (KeyMap v2)
 traverseWithKey = KM.traverseWithKey
