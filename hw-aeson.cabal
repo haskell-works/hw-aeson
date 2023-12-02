@@ -22,7 +22,7 @@ source-repository head
 
 common base                       { build-depends: base                       >= 4.11       && < 5      }
 
-common aeson                      { build-depends: aeson                      >= 1.4        && < 2.2    }
+common aeson                      { build-depends: aeson                      >= 1.4        && < 2.3    }
 common bytestring                 { build-depends: bytestring                 >= 0.10       && < 0.12   }
 common containers                 { build-depends: containers                 >= 0.6        && < 0.7    }
 common doctest                    { build-depends: doctest                    >= 0.16.2     && < 0.21   }

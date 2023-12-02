@@ -1,5 +1,10 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE DerivingVia #-}
-
+#if MIN_VERSION_aeson(2,2,0)
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE UndecidableInstances #-}
+#endif
 module HaskellWorks.Data.Aeson
     ( JsonEndo(..)
     , WithJsonKeyValues(..)
@@ -30,8 +35,13 @@ newtype JsonEndo a = JsonEndo
   }
   deriving (Semigroup, Monoid) via (Endo [a])
 
+#if MIN_VERSION_aeson(2,2,0)
+instance (ToJSON e, KeyValue e a) => KeyValue e (JsonEndo a) where
+  explicitToField f k v = JsonEndo (k .= f v :)
+#else
 instance KeyValue a => KeyValue (JsonEndo a) where
-  k .= v = JsonEndo (k .= v:)
+#endif
+  k .= v = JsonEndo (k .= v :)
 
 objectWithoutNulls :: [Pair] -> Value
 objectWithoutNulls = object . Prelude.filter (not . isNull . snd)
@@ -45,13 +55,21 @@ readJson t s = case readMaybe s of
   Nothing -> fail $ "Could not parse " <> t
 
 -- | Render optional fields as missing in JSON output.
+#if MIN_VERSION_aeson(2,2,0)
+(.?=) :: (KeyValue e p, ToJSON v, Monoid p) => Key -> Maybe v -> p
+#else
 (.?=) :: (KeyValue p, ToJSON v, Monoid p) => Key -> Maybe v -> p
+#endif
 (.?=) k mv = case mv of
   Just v -> k .= v
   Nothing -> mempty
 
 -- | Same as '.=', but with lower precedence to work well with lens.
+#if MIN_VERSION_aeson(2,2,0)
+(.!=) :: (KeyValue e kv, ToJSON v) => Key -> v -> kv
+#else
 (.!=) :: (KeyValue kv, ToJSON v) => Key -> v -> kv
+#endif
 (.!=) = (.=)
 
 -- | Same as 'object' except used in combination with '.?=' and '.!=' instead of '.='.
@@ -81,7 +99,11 @@ objectEndo es = object $ unJsonEndo (mconcat es) []
 --     ]
 -- @
 class ToJsonKeyValues a where
+#if MIN_VERSION_aeson(2,2,0)
+  toJsonKeyValues :: (KeyValue e kv, Monoid kv) => a -> [kv]
+#else
   toJsonKeyValues :: (KeyValue kv, Monoid kv) => a -> [kv]
+#endif
 
 -- | For use with language extension DerivingVia.  This derivation provides
 -- a ToJSON instance that delegates to the ToJsonKeyValues instance.
