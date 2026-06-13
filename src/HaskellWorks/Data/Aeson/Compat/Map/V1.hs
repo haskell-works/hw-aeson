@@ -57,7 +57,7 @@ import Data.Hashable (Hashable)
 import Data.HashMap.Strict (HashMap)
 import Data.Map (Map)
 import Data.Text (Text)
-import Prelude hiding (filter, foldl, foldr, lookup, map, null)
+import Prelude hiding (filter, foldl, foldl', foldr, lookup, map, null)
 
 type KeyMap v = HM.HashMap Text v
 type Key = Text

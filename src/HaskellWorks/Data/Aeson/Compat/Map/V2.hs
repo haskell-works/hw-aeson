@@ -63,7 +63,7 @@ import qualified HaskellWorks.Data.Aeson.Compat as J
 import Data.HashMap.Strict (HashMap)
 import Data.Map (Map)
 import Data.Text (Text)
-import Prelude hiding (filter, foldl, foldr, lookup, map, null)
+import Prelude hiding (filter, foldl, foldl', foldr, lookup, map, null)
 
 type KeyMap v = KM.KeyMap v
 type Key = J.Key
